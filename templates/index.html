@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <title>Trust Shield | Evidence-Based Social Media Profile Forensics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Typography: Manrope (headings) & Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS & FontAwesome Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Centralized Design System Tokens -->
+  <link rel="stylesheet" href="/static/css/trustshield-theme.css">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: { DEFAULT: '#263B36', hover: '#1c2c28', light: '#324e47' },
+            ivory: { DEFAULT: '#FAF7F0', dark: '#F2ECE1' },
+            mint: { DEFAULT: '#BDE8D5', light: '#E4F6EE', dark: '#9FD6BD' },
+            sand: { DEFAULT: '#DCCBB4', light: '#EDE3D4', dark: '#C7B298' },
+            mutedSlate: '#718078',
+            bodySecondary: '#52635A',
+            pos: '#267653',
+            warn: '#B7791F',
+            danger: '#B93838',
+            subtleBorder: '#E5E7E0'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['Manrope', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-ivory text-forest min-h-screen flex flex-col font-sans">
+
+  <!-- ================= TOP NAVIGATION ================= -->
+  <header class="w-full bg-ivory/90 backdrop-blur-md sticky top-0 z-50 border-b border-subtleBorder">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-forest flex items-center justify-center text-mint shadow-sm transition-transform group-hover:scale-105">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-heading font-extrabold text-forest text-lg tracking-tight leading-tight">Trust Shield</span>
+          <span class="text-[10px] text-mutedSlate uppercase tracking-wider font-medium">Profile Forensics</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-bodySecondary">
+        <a href="/" class="text-forest font-semibold transition hover:text-forest">Overview</a>
+        <a href="/scan/url" class="hover:text-forest transition">Analyze Profile</a>
+        <a href="/scan/photo" class="hover:text-forest transition">Screenshot Analysis</a>
+        <a href="/history" class="hover:text-forest transition">Scan History</a>
+        <a href="#how-it-works" class="hover:text-forest transition">How It Works</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="hidden md:flex items-center gap-3">
+        <a href="/login" class="text-sm font-semibold text-bodySecondary hover:text-forest px-3 py-2 transition">
+          Sign In
+        </a>
+        <a href="/scan/url" class="ts-btn-primary text-sm shadow-sm">
+          <span>Analyze a Profile</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobileMenuBtn" aria-label="Toggle Navigation Menu" class="md:hidden text-forest p-2 rounded-lg hover:bg-ivory-dark transition">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-subtleBorder px-6 py-4 space-y-3">
+      <a href="/" class="block text-sm font-semibold text-forest py-2">Overview</a>
+      <a href="/scan/url" class="block text-sm text-bodySecondary hover:text-forest py-2">Analyze Profile</a>
+      <a href="/scan/photo" class="block text-sm text-bodySecondary hover:text-forest py-2">Screenshot Analysis</a>
+      <a href="/history" class="block text-sm text-bodySecondary hover:text-forest py-2">Scan History</a>
+      <a href="#how-it-works" class="block text-sm text-bodySecondary hover:text-forest py-2">How It Works</a>
+      <div class="pt-3 border-t border-subtleBorder flex flex-col gap-2">
+        <a href="/login" class="text-center text-sm font-semibold text-bodySecondary py-2">Sign In</a>
+        <a href="/scan/url" class="ts-btn-primary text-center text-sm">Analyze a Profile</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="max-w-7xl mx-auto px-6 pt-16 pb-20 lg:pt-24 lg:pb-28">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Left Column: Copy & CTAs -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Eyebrow Tag -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-mint-light border border-mint text-forest text-xs font-semibold tracking-wide">
+          <span class="w-2 h-2 rounded-full bg-pos animate-pulse"></span>
+          SAFER CONNECTIONS START WITH CLARITY
+        </div>
+
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-forest leading-[1.12] tracking-tight">
+          Trust more wisely. <br>
+          <span class="text-forest-light">Connect more confidently.</span>
+        </h1>
+
+        <p class="text-bodySecondary text-base sm:text-lg leading-relaxed max-w-xl">
+          Understand suspicious social media profile signals with clear, evidence-based AI analysis. Evaluate behavioral cadences, language patterns, and network integrity transparently.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+          <a href="/scan/url" class="ts-btn-primary text-base py-3.5 px-7">
+            <span>Analyze a Profile</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <a href="#how-it-works" class="ts-btn-secondary text-base py-3.5 px-7">
+            <span>How It Works</span>
+          </a>
+        </div>
+
+        <!-- Honest Trust Badges -->
+        <div class="pt-6 border-t border-subtleBorder flex flex-wrap items-center gap-6 text-xs text-mutedSlate">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-pos text-sm"></i>
+            <span>Multi-modal signal forensics</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-file-shield text-pos text-sm"></i>
+            <span>Transparent evidence rationales</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-user-lock text-pos text-sm"></i>
+            <span>No credentials required</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Restrained Visual Product Preview -->
+      <div class="lg:col-span-5">
+        <div class="ts-card p-6 sm:p-7 relative bg-white border border-subtleBorder shadow-md rounded-2xl">
+          
+          <!-- Sample Card Header -->
+          <div class="flex items-center justify-between pb-4 border-b border-subtleBorder mb-5">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-xl bg-ivory-dark flex items-center justify-center text-forest font-heading font-bold text-base border border-sand">
+                MD
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-heading font-bold text-forest text-sm">@marcus_design</span>
+                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-ivory-dark text-forest uppercase tracking-wider">INSTAGRAM</span>
+                </div>
+                <p class="text-xs text-mutedSlate">Audited Profile Dossier</p>
+              </div>
+            </div>
+            <span class="ts-badge-safe text-xs font-semibold px-2.5 py-1 rounded-full flex items-center gap-1.5">
+              <i class="fa-solid fa-check text-[10px]"></i> Authentic
+            </span>
+          </div>
+
+          <!-- Overall Rating -->
+          <div class="bg-ivory rounded-xl p-4 border border-sand-light mb-5 flex items-center justify-between">
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-mutedSlate font-semibold block">Safety Rating</span>
+              <span class="text-xs text-bodySecondary mt-0.5">High confidence based on public data</span>
+            </div>
+            <div class="text-right">
+              <span class="font-heading font-extrabold text-3xl text-pos tabular-nums">94.2%</span>
+            </div>
+          </div>
+
+          <!-- 4-Pillar Signals Breakdown -->
+          <div class="space-y-3.5 mb-5">
+            <div>
+              <div class="flex justify-between text-xs font-medium text-bodySecondary mb-1">
+                <span>Behavioral Cadence</span>
+                <span class="font-semibold text-forest tabular-nums">96%</span>
+              </div>
+              <div class="h-2 w-full bg-ivory-dark rounded-full overflow-hidden">
+                <div class="h-full bg-forest rounded-full" style="width: 96%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-medium text-bodySecondary mb-1">
+                <span>Linguistic & Bio Patterns</span>
+                <span class="font-semibold text-forest tabular-nums">92%</span>
+              </div>
+              <div class="h-2 w-full bg-ivory-dark rounded-full overflow-hidden">
+                <div class="h-full bg-forest rounded-full" style="width: 92%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-medium text-bodySecondary mb-1">
+                <span>Vision Verification</span>
+                <span class="font-semibold text-forest tabular-nums">95%</span>
+              </div>
+              <div class="h-2 w-full bg-ivory-dark rounded-full overflow-hidden">
+                <div class="h-full bg-forest rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs font-medium text-bodySecondary mb-1">
+                <span>Network Reciprocity</span>
+                <span class="font-semibold text-forest tabular-nums">94%</span>
+              </div>
+              <div class="h-2 w-full bg-ivory-dark rounded-full overflow-hidden">
+                <div class="h-full bg-forest rounded-full" style="width: 94%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-mint-light/60 border border-mint rounded-lg p-3 text-xs text-forest flex items-start gap-2.5">
+            <i class="fa-solid fa-circle-info text-pos mt-0.5"></i>
+            <span>Consistent posting history, natural handle entropy, and normal reciprocal follow ratio observed.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VALUE PILLARS (3 SECTIONS) ================= -->
+  <section class="bg-white border-y border-subtleBorder py-20">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold text-mutedSlate uppercase tracking-wider">THOUGHTFUL FORENSICS</span>
+        <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-forest mt-2 tracking-tight">
+          Clear evidence instead of opaque black-box claims
+        </h2>
+        <p class="text-bodySecondary text-sm sm:text-base mt-3">
+          Trust Shield analyzes multi-layered patterns across publicly available account metadata to help you evaluate credibility with clarity.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- Pillar 1 -->
+        <div class="ts-card p-8 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-ivory flex items-center justify-center text-forest border border-sand">
+              <i class="fa-solid fa-chart-line text-lg"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-forest">Profile Signals</h3>
+            <p class="text-bodySecondary text-sm leading-relaxed">
+              Examines observable post cadences, creation age benchmarks, and follow-to-follower ratios to flag non-human velocity bursts and automated activity.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-subtleBorder text-xs text-mutedSlate flex items-center gap-2">
+            <i class="fa-solid fa-check text-pos"></i> Rate-calibrated heuristics
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="ts-card p-8 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-ivory flex items-center justify-center text-forest border border-sand">
+              <i class="fa-solid fa-align-left text-lg"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-forest">Understandable Findings</h3>
+            <p class="text-bodySecondary text-sm leading-relaxed">
+              Every audit itemizes why a profile triggered flags—such as randomized username entropy, off-platform redirect links, or missing profile media.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-subtleBorder text-xs text-mutedSlate flex items-center gap-2">
+            <i class="fa-solid fa-check text-pos"></i> Transparent rationale breakdowns
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="ts-card p-8 rounded-2xl flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-xl bg-ivory flex items-center justify-center text-forest border border-sand">
+              <i class="fa-solid fa-shield-heart text-lg"></i>
+            </div>
+            <h3 class="font-heading text-xl font-bold text-forest">More Informed Decisions</h3>
+            <p class="text-bodySecondary text-sm leading-relaxed">
+              Provides practical next steps and highlights what could not be independently verified, avoiding false accusations while protecting your interactions.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-subtleBorder text-xs text-mutedSlate flex items-center gap-2">
+            <i class="fa-solid fa-check text-pos"></i> Responsible risk guidance
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS (3 STEPS) ================= -->
+  <section id="how-it-works" class="py-20 max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-xs font-bold text-mutedSlate uppercase tracking-wider">WORKFLOW SIMPLICITY</span>
+      <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-forest mt-2 tracking-tight">
+        How Trust Shield works
+      </h2>
+      <p class="text-bodySecondary text-sm sm:text-base mt-3">
+        Three clear steps to audit suspicious profiles and understand digital risk signals.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      
+      <!-- Step 1 -->
+      <div class="bg-ivory rounded-2xl p-7 border border-sand relative">
+        <div class="w-9 h-9 rounded-lg bg-forest text-mint font-heading font-bold text-sm flex items-center justify-center mb-5">
+          01
+        </div>
+        <h4 class="font-heading text-lg font-bold text-forest mb-2">Provide Profile Context</h4>
+        <p class="text-bodySecondary text-sm leading-relaxed">
+          Enter a supported public profile URL (Instagram, Twitter/X, LinkedIn, Facebook) or upload a profile screenshot for automatic OCR extraction.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="bg-ivory rounded-2xl p-7 border border-sand relative">
+        <div class="w-9 h-9 rounded-lg bg-forest text-mint font-heading font-bold text-sm flex items-center justify-center mb-5">
+          02
+        </div>
+        <h4 class="font-heading text-lg font-bold text-forest mb-2">Cross-Examine Signals</h4>
+        <p class="text-bodySecondary text-sm leading-relaxed">
+          The engine computes linguistic entropy, checks account cadences, evaluates image artifacts, and measures reciprocal network distribution.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="bg-ivory rounded-2xl p-7 border border-sand relative">
+        <div class="w-9 h-9 rounded-lg bg-forest text-mint font-heading font-bold text-sm flex items-center justify-center mb-5">
+          03
+        </div>
+        <h4 class="font-heading text-lg font-bold text-forest mb-2">Review Findings</h4>
+        <p class="text-bodySecondary text-sm leading-relaxed">
+          Examine the comprehensive dossier detailing safety rating, specific risk indicators, radar distribution, and actionable verification steps.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= RESPONSIBLE AI NOTICE ================= -->
+  <section class="max-w-5xl mx-auto px-6 pb-20">
+    <div class="ts-card-sand p-8 rounded-2xl border border-sand">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-forest text-mint flex items-center justify-center shrink-0 mt-0.5">
+          <i class="fa-solid fa-scale-balanced"></i>
+        </div>
+        <div class="space-y-2">
+          <h4 class="font-heading font-bold text-forest text-base">Responsible AI & Transparency Commitment</h4>
+          <p class="text-bodySecondary text-sm leading-relaxed">
+            Trust Shield evaluates signals in publicly accessible profile data. A risk indication reflects unusual patterns or missing benchmarks, not proof of malicious intent. Results may be incomplete for private accounts. Users should always exercise independent judgment and verify critical details through official channels.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CALL TO ACTION ================= -->
+  <section class="bg-white border-t border-subtleBorder py-16">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+      <h2 class="font-heading text-3xl font-extrabold text-forest">
+        Ready to inspect an account?
+      </h2>
+      <p class="text-bodySecondary text-sm sm:text-base max-w-lg mx-auto">
+        Analyze profile links or screenshots in seconds with clear, evidence-based forensics.
+      </p>
+      <div class="flex justify-center gap-4 pt-2">
+        <a href="/scan/url" class="ts-btn-primary py-3 px-8 text-sm">
+          <span>Start Profile Scan</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+        <a href="/scan/photo" class="ts-btn-secondary py-3 px-6 text-sm">
+          <span>Upload Screenshot</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-forest text-ivory py-14 border-t border-forest-light">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-10 pb-10 border-b border-forest-light">
+        
+        <!-- Col 1: Brand -->
+        <div class="space-y-3 md:col-span-1">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-mint text-forest flex items-center justify-center font-bold text-sm">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <span class="font-heading font-extrabold text-white text-base">Trust Shield</span>
+          </div>
+          <p class="text-xs text-sand leading-relaxed">
+            Evidence-based social media profile forensics and risk analysis suite.
+          </p>
+        </div>
+
+        <!-- Col 2: Tools -->
+        <div class="space-y-2 text-xs">
+          <span class="font-heading font-bold text-white uppercase tracking-wider block mb-3">Investigation Tools</span>
+          <a href="/scan/url" class="block text-sand hover:text-white transition">URL Profile Scan</a>
+          <a href="/scan/photo" class="block text-sand hover:text-white transition">Screenshot OCR Scan</a>
+          <a href="/history" class="block text-sand hover:text-white transition">Audit History Dossiers</a>
+          <a href="/dashboard" class="block text-sand hover:text-white transition">Analyst Console</a>
+        </div>
+
+        <!-- Col 3: Resources -->
+        <div class="space-y-2 text-xs">
+          <span class="font-heading font-bold text-white uppercase tracking-wider block mb-3">Guidance & System</span>
+          <a href="#how-it-works" class="block text-sand hover:text-white transition">How Analysis Works</a>
+          <a href="/login" class="block text-sand hover:text-white transition">Moderator Sign In</a>
+          <a href="/health" class="block text-sand hover:text-white transition">Service Status</a>
+        </div>
+
+        <!-- Col 4: Principles -->
+        <div class="space-y-2 text-xs">
+          <span class="font-heading font-bold text-white uppercase tracking-wider block mb-3">Trust Principles</span>
+          <p class="text-sand/80 leading-relaxed">
+            Designed for human safety, non-accusatory reporting, and transparent evidence evaluation.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-sand/70 gap-4">
+        <span>&copy; Trust Shield Platform. Engineered for safe digital connections.</span>
+        <span>Version 1.0.0 &bull; Multi-Modal Forensics</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  </script>
+</body>
+</html>

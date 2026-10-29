@@ -1,0 +1,212 @@
+/* ==========================================================================
+   TRUST SHIELD DESIGN SYSTEM TOKENS & BASE STYLES
+   Exact 6-Color Palette Specification:
+   1. Deep Forest Slate: #263B36
+   2. Warm Ivory:        #FAF7F0
+   3. Soft Mint:         #BDE8D5
+   4. Natural Sand:      #DCCBB4
+   5. Clean White:       #FFFFFF
+   6. Muted Slate:       #718078
+   Supporting:
+   - Positive/Safe:      #267653
+   - Warning/Review:     #B7791F
+   - Danger/Concern:     #B93838
+   - Subtle Border:      #E5E7E0
+   - Secondary Text:     #52635A
+   ========================================================================== */
+
+:root {
+  --color-forest: #263B36;
+  --color-forest-hover: #1c2c28;
+  --color-forest-light: #324e47;
+  --color-ivory: #FAF7F0;
+  --color-ivory-dark: #F2ECE1;
+  --color-mint: #BDE8D5;
+  --color-mint-light: #E4F6EE;
+  --color-mint-dark: #9FD6BD;
+  --color-sand: #DCCBB4;
+  --color-sand-light: #EDE3D4;
+  --color-sand-dark: #C7B298;
+  --color-white: #FFFFFF;
+  --color-muted: #718078;
+  --color-text-primary: #263B36;
+  --color-text-secondary: #52635A;
+  --color-positive: #267653;
+  --color-positive-bg: #E7F5EE;
+  --color-positive-border: #B7E4CE;
+  --color-warning: #B7791F;
+  --color-warning-bg: #FEF7EA;
+  --color-warning-border: #F3DCAC;
+  --color-danger: #B93838;
+  --color-danger-bg: #FDF1F1;
+  --color-danger-border: #F7C4C4;
+  --color-border: #E5E7E0;
+  --color-border-dark: #D4D8CF;
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(38, 59, 54, 0.05);
+  --shadow-md: 0 4px 14px -2px rgba(38, 59, 54, 0.06), 0 2px 6px -1px rgba(38, 59, 54, 0.04);
+  --shadow-lg: 0 12px 28px -4px rgba(38, 59, 54, 0.08), 0 4px 12px -2px rgba(38, 59, 54, 0.04);
+}
+
+/* Global resets & typography */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--color-ivory);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.02em;
+  color: var(--color-forest);
+}
+
+.tabular-nums {
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Utility classes mapping exact palette */
+.bg-forest { background-color: var(--color-forest); }
+.bg-forest:hover { background-color: var(--color-forest-hover); }
+.text-forest { color: var(--color-forest); }
+.border-forest { border-color: var(--color-forest); }
+
+.bg-ivory { background-color: var(--color-ivory); }
+.text-ivory { color: var(--color-ivory); }
+
+.bg-mint { background-color: var(--color-mint); }
+.bg-mint-light { background-color: var(--color-mint-light); }
+.text-mint { color: var(--color-mint); }
+.text-mint-dark { color: #1e5a41; }
+.border-mint { border-color: var(--color-mint); }
+
+.bg-sand { background-color: var(--color-sand); }
+.bg-sand-light { background-color: var(--color-sand-light); }
+.text-sand { color: var(--color-sand); }
+.border-sand { border-color: var(--color-sand); }
+
+.text-muted-slate { color: var(--color-muted); }
+.text-body-secondary { color: var(--color-text-secondary); }
+.border-subtle { border-color: var(--color-border); }
+
+/* Card styles */
+.ts-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ts-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-dark);
+}
+
+.ts-card-sand {
+  background-color: var(--color-sand-light);
+  border: 1px solid var(--color-sand);
+  border-radius: var(--radius-lg);
+}
+
+/* Buttons */
+.ts-btn-primary {
+  background-color: var(--color-forest);
+  color: var(--color-white);
+  font-weight: 600;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-md);
+  transition: all 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+}
+.ts-btn-primary:hover {
+  background-color: var(--color-forest-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.ts-btn-secondary {
+  background-color: var(--color-white);
+  color: var(--color-forest);
+  border: 1px solid var(--color-border-dark);
+  font-weight: 600;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-md);
+  transition: all 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.ts-btn-secondary:hover {
+  background-color: var(--color-ivory-dark);
+  border-color: var(--color-sand);
+}
+
+.ts-btn-mint {
+  background-color: var(--color-mint);
+  color: var(--color-forest);
+  font-weight: 600;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-md);
+  transition: all 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.ts-btn-mint:hover {
+  background-color: var(--color-mint-dark);
+}
+
+/* Status Badges */
+.ts-badge-safe {
+  background-color: var(--color-positive-bg);
+  color: var(--color-positive);
+  border: 1px solid var(--color-positive-border);
+}
+.ts-badge-warning {
+  background-color: var(--color-warning-bg);
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning-border);
+}
+.ts-badge-danger {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger-border);
+}
+
+/* Form Controls */
+.ts-input {
+  width: 100%;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  color: var(--color-forest);
+  font-size: 0.925rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.ts-input:focus {
+  outline: none;
+  border-color: var(--color-forest);
+  box-shadow: 0 0 0 3px rgba(38, 59, 54, 0.1);
+}
